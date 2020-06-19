@@ -35,6 +35,64 @@ let mostrarDeporte = (req, res) => {
 }
 
 /* ================================
+FUNCION POST 
+================================== */
+let crearDeporte = (req, res) => {
+
+    //https://mongoosejs.com/docs/api.html#model_Model-save
+
+    //Obtengo los datos del cuerpo del formulario
+
+    const { tipo_marcador, torneo, lugar, etapa, tipo_cancha, fecha, jugador } = req.body;
+    console.log("destructuracion =>", req.body);
+
+    //Obtengo los datos del formulario para pasarlos al modelo
+    let deporte = new Deporte({
+        tipo_marcador: req.body.tipo_marcador,
+        torneo: req.body.torneo,
+        lugar: req.body.lugar,
+        etapa: req.body.etapa,
+        tipo_cancha: req.body.tipo_cancha,
+        fecha: req.body.fecha,
+        jugador: req.body.jugador
+        /*jugador: [{
+                sss: req.body.jugador,
+                ssssss: req.body.jugador
+            }]*/
+            /*jugador: [{
+                nombre_jugador: req.body.jugador.nombre_jugador,
+                edad: this.jugador.edad,
+                pais: this.jugador.pais,
+                ranking_atp: this.jugador.ranking_atp
+            }],*/
+
+
+    });
+    console.log("deporte", deporte);
+
+
+
+    deporte.save((err, data) => {
+
+        if (err) {
+            return res.json({
+                status: 400,
+                mensaje: 'Error al almacenar el deporte',
+                err
+            })
+        }
+
+        res.json({
+            status: 200,
+            data,
+            mensaje: 'Deporte creado con exito'
+        })
+    });
+
+
+}
+
+/* ================================
 FUNCION BORRAR 
 ================================== */
 let borrarDeporte = (req, res) => {
@@ -85,5 +143,6 @@ let borrarDeporte = (req, res) => {
 /* EXPORTAMOS LAS FUNCIONES DEL CONTROLADOR */
 module.exports = {
     mostrarDeporte,
+    crearDeporte,
     borrarDeporte
 }

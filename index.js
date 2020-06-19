@@ -24,21 +24,6 @@ app.use(require('./rutas/deporte.ruta'));
 //Aquí esta la conexion entre modelo>controlador>rutas
 
 /* ================================
-PETICIONES POST 
-================================== */
-app.post('/crear-deporte', (req, res) => {
-
-    //https://mongoosejs.com/docs/api.html#model_Model.find
-
-    let deporte = req.body;
-
-    res.json({
-        deporte
-    })
-
-})
-
-/* ================================
 PETICIONES PUT 
 ================================== */
 app.put('/editar-deporte/:id', (req, res) => {
