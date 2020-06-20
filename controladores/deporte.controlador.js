@@ -44,52 +44,35 @@ let crearDeporte = (req, res) => {
     //Obtengo los datos del cuerpo del formulario
 
     const { tipo_marcador, torneo, lugar, etapa, tipo_cancha, fecha, jugador } = req.body;
-    console.log("destructuracion =>", req.body);
+    //console.log("destructuracion =>", req.body);
 
-    //Obtengo los datos del formulario para pasarlos al modelo
-    let deporte = new Deporte({
-        tipo_marcador: req.body.tipo_marcador,
-        torneo: req.body.torneo,
-        lugar: req.body.lugar,
-        etapa: req.body.etapa,
-        tipo_cancha: req.body.tipo_cancha,
-        fecha: req.body.fecha,
-        jugador: req.body.jugador
-        /*jugador: [{
-                sss: req.body.jugador,
-                ssssss: req.body.jugador
-            }]*/
-            /*jugador: [{
-                nombre_jugador: req.body.jugador.nombre_jugador,
-                edad: this.jugador.edad,
-                pais: this.jugador.pais,
-                ranking_atp: this.jugador.ranking_atp
-            }],*/
-
-
-    });
-    console.log("deporte", deporte);
-
-
-
-    deporte.save((err, data) => {
-
-        if (err) {
-            return res.json({
-                status: 400,
-                mensaje: 'Error al almacenar el deporte',
-                err
+    req.body.forEach(function(obj) {
+        //Obtengo los datos del formulario para pasarlos al modelo
+        let deporte = new Deporte({
+            tipo_marcador: obj.tipo_marcador,
+            torneo: obj.torneo,
+            lugar: obj.lugar,
+            etapa: obj.etapa,
+            tipo_cancha: obj.tipo_cancha,
+            fecha: obj.fecha,
+            jugador: obj.jugador
+        });
+        //console.log("deporte", deporte);
+        deporte.save((err, data) => {
+            if (err) {
+                return res.json({
+                    status: 400,
+                    mensaje: 'Error al almacenar el deporte',
+                    err
+                })
+            }
+            res.json({
+                status: 200,
+                data,
+                mensaje: 'Deporte creado con exito'
             })
-        }
-
-        res.json({
-            status: 200,
-            data,
-            mensaje: 'Deporte creado con exito'
-        })
+        });
     });
-
-
 }
 
 /* ================================

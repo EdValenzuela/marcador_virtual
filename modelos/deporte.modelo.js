@@ -2,7 +2,14 @@
 const mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
+//let jugador = new Schema({ any: [Schema.Types.Mixed] });
+/*var nombres = new Schema({ any: [] });
+var edad = new Schema({ any: [] });
+var pais = new Schema({ any: [] });
+var ranking_atp = new Schema({ any: [] });*/
+
 let deporteSchema = new Schema({
+    
     tipo_marcador: {
         type: String,
         require: [true, "El tipo de marcador es obligatorio"]
@@ -28,6 +35,12 @@ let deporteSchema = new Schema({
         required: false
     },
     jugador: [{
+        nombre_jugador: { type: String, default: '' },
+        edad: { type: Number, default: '' },
+        pais: { type: String, default: ''},
+        ranking_atp: { type: String, default: ''}
+    }]
+    /*jugador: [{
             nombre_jugador: {
                 type: String,
                 required: false
@@ -44,7 +57,7 @@ let deporteSchema = new Schema({
                 type: Number,
                 required: false
             }
-        }]
+        }]*/
         /*jugador: [{
             nombre_jugador: String,
             edad: Number,
