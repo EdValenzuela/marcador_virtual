@@ -8,6 +8,7 @@ const Deporte = require('../controladores/deporte.controlador');
 
 app.get('/mostrar-deporte', Deporte.mostrarDeporte);
 app.post('/crear-deporte', Deporte.crearDeporte);
+app.put('/editar-deporte/:id', Deporte.editarDeporte);
 app.delete('/borrar-deporte/:id', Deporte.borrarDeporte);
 
 /* EXPORTAMOS LA RUTA */

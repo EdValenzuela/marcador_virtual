@@ -23,21 +23,6 @@ app.use(bodyParser.json());
 app.use(require('./rutas/deporte.ruta'));
 //Aquí esta la conexion entre modelo>controlador>rutas
 
-/* ================================
-PETICIONES PUT 
-================================== */
-app.put('/editar-deporte/:id', (req, res) => {
-
-    //https://mongoosejs.com/docs/api.html#model_Model.find
-
-    let id = req.params.id;
-
-    res.json({
-        id
-    })
-
-})
-
 /* CONEXION A LA BD */
 mongoose.connect('mongodb://localhost:27017/marcador_virtual', {
     useNewUrlParser: true,
