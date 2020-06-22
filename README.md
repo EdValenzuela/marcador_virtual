@@ -25,6 +25,14 @@ const iniciarProyecto = () =>{
 }
 
 ```
+## EndPoints
+> GET =    url/mostrar-deporte
+
+> POST =   url/crear-deporte
+
+> DELETE = url/borrar-deporte/:id
+
+> PUT =    url/editar-deporte/:id
 
 ## Notas
 Deben tener instalado **NodeJS** y **MongoDB**
